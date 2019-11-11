@@ -13,10 +13,11 @@ function exportPng() {
   console.log('exporting');
   var my_canvas = document.getElementById('canvas');
   var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
-window.open(
-  image,
-  '_blank'// <- This is what makes it open in a new window.
-);
+  window.location.href=image;
+  // window.open(
+//   image,
+//   '_blank'// <- This is what makes it open in a new window.
+// );
 }
 
 function nFormatter(num, digits) {
