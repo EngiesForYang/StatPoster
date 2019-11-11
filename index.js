@@ -37,8 +37,20 @@ function renderHtml(newProps) {
       <input type='submit' />
   </form>
   ${renderStats(fullData)}
+
+<canvas id="canvas" width="2550" height="3300" style="transform: scale(.5)">
+            This text is displayed if your browser does not support HTML5 Canvas.
+        </canvas>
 </div>
 `;
+  
+  var my_canvas = document.getElementById('canvas'),
+    context = my_canvas.getContext("2d");
+  var img = new Image();
+img.onload = function () {
+    context.drawImage(img, 0, 0);
+}
+img.src = "https://engiesforyang.github.io/StatPoster/EverySingleMonthTemplate.png";
 
 }
 
