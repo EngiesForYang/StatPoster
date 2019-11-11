@@ -1,12 +1,34 @@
-let props = {
-  drawSteps: [
-        ['font',"150px Roboto"],
+const startSteps = [
+  ['font',"150px Roboto"],
     ['fillStyle','#ffffff'],
     ['fillText',["What Andrew Yang will do for", 200, 300]],
-  ]
+  ];
+
+
+let props = {
+  drawSteps:[...startSteps]
 };
 
 
+function nFormatter(num, digits) {
+  var si = [
+    { value: 1, symbol: "" },
+    { value: 1E3, symbol: " k" },
+    { value: 1E6, symbol: " Mil" },
+    { value: 1E9, symbol: " Bil" },
+    { value: 1E12, symbol: " T" },
+    { value: 1E15, symbol: " P" },
+    { value: 1E18, symbol: " E" }
+  ];
+  var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  var i;
+  for (i = si.length - 1; i > 0; i--) {
+    if (num >= si[i].value) {
+      break;
+    }
+  }
+  return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
+}
 
 function renderStats(fullData) {
   if (fullData) {
@@ -98,11 +120,15 @@ async function loadData(term) {
     return o;
   }, {})
   fullData.stats = stats;
+  const investment = parseInt(stats['Population'].split(',').join(''))*1000;
+  const invesDisplay = nFormatter(investment)
   const drawSteps = [
-    ...props.drawSteps,
+    ...startSteps,
     ['fillText',[fullData.geo, 400, 450]],
     ['font',"60px Roboto"],
-    ['fillText',[`Population ${stats['Population']} - Median Household Income - $${stats['Median Household Income']} - Poverty ${stats['Individuals below poverty level']}`,350,650]]
+    ['fillText',[`Population ${stats['Population']} - Median Household Income - $${stats['Median Household Income']} - Poverty ${stats['Individuals below poverty level']}`,350,650]],  
+    ['font',"130px Roboto"],    
+    ['fillText',[`Invest $${invesDisplay} into it EVERY MONTH`, 250, 1600]],
 
   ];
   console.log({
