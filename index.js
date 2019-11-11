@@ -38,7 +38,7 @@ function renderHtml(newProps) {
   </form>
   ${renderStats(fullData)}
 
-<canvas id="canvas" width="2550" height="3300" style="transform: scale(.5)">
+<canvas id="canvas" width="2550" height="3300" style="margin-top: 10px; width: 500px;">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 </div>
