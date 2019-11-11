@@ -1,5 +1,5 @@
 const startSteps = [
-  ['font',"150px Roboto"],
+  ['font',"150px Montserrat"],
     ['fillStyle','#ffffff'],
     ['fillText',["What Andrew Yang will do for", 200, 300]],
   ];
@@ -9,6 +9,15 @@ let props = {
   drawSteps:[...startSteps]
 };
 
+function exportPng() {
+  console.log('exporting');
+  var my_canvas = document.getElementById('canvas');
+  var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+window.location(
+  image,
+  '_blank'// <- This is what makes it open in a new window.
+);
+}
 
 function nFormatter(num, digits) {
   var si = [
@@ -65,7 +74,7 @@ function renderHtml(newProps) {
       <input name='location' id='inputlocation' type='text' placeholder='enter zip or city'/>
       <input type='submit' value='go'/>
   </form>
-<div style="margin:5px">right click to save image</div>
+<button type="button" onclick="exportPng()">export to png</button>
 <div style="display:flex;">
 
 
@@ -95,7 +104,7 @@ img.onload = function () {
     }
   })
 }
-img.src = "https://engiesforyang.github.io/StatPoster/EverySingleMonthTemplate.png";
+img.src = "EverySingleMonthTemplate.png";
 
 }
 
@@ -131,11 +140,11 @@ async function loadData(term) {
   const drawSteps = [
     ...startSteps,
     ['fillText',[fullData.geo, 400, 450]],
-    ['font',"60px Roboto"],
+    ['font',"60px Montserrat"],
     ['fillText',[`Population ${stats['Population']} - Median Household Income - $${stats['Median Household Income']} - Poverty ${stats['Individuals below poverty level']}`,350,650]],  
-    ['font',"130px Roboto"],    
+    ['font',"130px Montserrat"],    
     ['fillText',[`Invest $${invesDisplay} into it EVERY MONTH`, 250, 1600]],
-    ['font',"90px Roboto"],    
+    ['font',"90px Montserrat"],    
     ['fillText',['The Freedom Dividend - $1000 a month for every adult',220,1750]],
 
   ];
