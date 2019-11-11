@@ -13,7 +13,7 @@ let props = {
 function nFormatter(num, digits) {
   var si = [
     { value: 1, symbol: "" },
-    { value: 1E3, symbol: " k" },
+    { value: 1E3, symbol: "k" },
     { value: 1E6, symbol: " Mil" },
     { value: 1E9, symbol: " Bil" },
     { value: 1E12, symbol: " T" },
@@ -62,14 +62,20 @@ function renderHtml(newProps) {
 <h1>Hello Yang!</h1>
 <div>
   <form onsubmit='return getStats(event);'>
-      <input name='location' id='inputlocation' type='text'/>
-      <input type='submit' />
+      <input name='location' id='inputlocation' type='text' placeholder='enter zip or city'/>
+      <input type='submit' value='go'/>
   </form>
-  ${renderStats(fullData)}
+<div style="margin:5px">right click to save image</div>
+<div style="display:flex;">
 
-<canvas id="canvas" width="2550" height="3300" style="margin: 20px 5px; width: 500px;">
+
+<canvas id="canvas" width="2550" height="3300" style="margin: 5px 5px; width: 500px;">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
+<div>
+  ${renderStats(fullData)}
+</div>
+</div>
 </div>
 `;
   
@@ -129,6 +135,8 @@ async function loadData(term) {
     ['fillText',[`Population ${stats['Population']} - Median Household Income - $${stats['Median Household Income']} - Poverty ${stats['Individuals below poverty level']}`,350,650]],  
     ['font',"130px Roboto"],    
     ['fillText',[`Invest $${invesDisplay} into it EVERY MONTH`, 250, 1600]],
+    ['font',"90px Roboto"],    
+    ['fillText',['The Freedom Dividend - $1000 a month for every adult',220,1750]],
 
   ];
   console.log({
