@@ -1,4 +1,10 @@
-let props = {};
+let props = {
+  drawSteps: [
+        ['font',"150px Roboto"],
+    ['fillStyle','#ffffff'],
+    ['fillText',["What Andrew Yang will do for", 200, 300]],
+  ]
+};
 
 
 
@@ -25,7 +31,8 @@ function renderStats(fullData) {
 function renderHtml(newProps) {
 
   const {
-    fullData
+    fullData,
+    drawSteps
   } = newProps;
   props = newProps;
 
@@ -38,7 +45,7 @@ function renderHtml(newProps) {
   </form>
   ${renderStats(fullData)}
 
-<canvas id="canvas" width="2550" height="3300" style="margin-top: 10px; width: 500px;">
+<canvas id="canvas" width="2550" height="3300" style="margin: 20px 5px; width: 500px;">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 </div>
@@ -49,6 +56,16 @@ function renderHtml(newProps) {
   var img = new Image();
 img.onload = function () {
     context.drawImage(img, 0, 0);
+  console.log(drawSteps)
+  drawSteps.forEach(([step,args])=>{
+    console.log({step,args});
+    if (Array.isArray(args)){
+      context[step](...args);
+    }
+    else {
+      context[step] = args;
+    }
+  })
 }
 img.src = "https://engiesforyang.github.io/StatPoster/EverySingleMonthTemplate.png";
 
@@ -81,12 +98,20 @@ async function loadData(term) {
     return o;
   }, {})
   fullData.stats = stats;
+  const drawSteps = [
+    ...props.drawSteps,
+    ['fillText',[fullData.geo, 400, 450]],
+    ['font',"60px Roboto"],
+    ['fillText',[`Population ${stats['Population']} - Median Household Income - $${stats['Median Household Income']} - Poverty ${stats['Individuals below poverty level']}`,350,650]]
+
+  ];
   console.log({
     stats
   })
   renderHtml({
     ...props,
-    fullData
+    fullData,
+    drawSteps
   })
 
 }
