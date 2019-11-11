@@ -13,11 +13,12 @@ function exportPng() {
   console.log('exporting');
   var my_canvas = document.getElementById('canvas');
   var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
-  window.location.href=image;
-  // window.open(
+// window.open(
 //   image,
 //   '_blank'// <- This is what makes it open in a new window.
 // );
+  
+window.location.href=image;
 }
 
 function nFormatter(num, digits) {
@@ -59,6 +60,7 @@ function renderStats(fullData) {
   }
 
 }
+//<button type="button" onclick="exportPng()">export to png</button>
 
 function renderHtml(newProps) {
 
@@ -75,7 +77,6 @@ function renderHtml(newProps) {
       <input name='location' id='inputlocation' type='text' placeholder='enter zip or city'/>
       <input type='submit' value='go'/>
   </form>
-<button type="button" onclick="exportPng()">export to png</button>
 <div style="display:flex;">
 
 
@@ -105,7 +106,8 @@ img.onload = function () {
     }
   })
 }
-img.src = "EverySingleMonthTemplate.png";
+img.src = "https://engiesforyang.github.io/StatPoster/EverySingleMonthTemplate.png";
+  img.crossOrigin="Anonymous";
 
 }
 
@@ -144,9 +146,9 @@ async function loadData(term) {
     ['font',"60px Montserrat"],
     ['fillText',[`Population ${stats['Population']} - Median Household Income - $${stats['Median Household Income']} - Poverty ${stats['Individuals below poverty level']}`,350,650]],  
     ['font',"130px Montserrat"],    
-    ['fillText',[`Invest $${invesDisplay} into it EVERY MONTH`, 250, 1600]],
-    ['font',"90px Montserrat"],    
-    ['fillText',['The Freedom Dividend - $1000 a month for every adult',220,1750]],
+    ['fillText',[`Invest $${invesDisplay} into it EVERY MONTH`, 150, 1600]],
+    ['font',"75px Montserrat"],    
+    ['fillText',['The Freedom Dividend - $1000 a month for every adult',230,1790]],
 
   ];
   console.log({
