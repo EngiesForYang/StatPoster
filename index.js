@@ -77,14 +77,15 @@ function renderHtml(newProps) {
       <input name='location' id='inputlocation' type='text' placeholder='enter zip or city'/>
       <input type='submit' value='go'/>
   </form>
+  ${renderStats(fullData)}
 <div style="display:flex;">
 
 
-<canvas id="canvas" width="2550" height="3300" style="margin: 5px 5px; width: 500px;">
+<canvas id="canvas" width="2550" height="3300" style="margin: 5px 5px; transform : scale(0.25) translate(-150%, -150%);">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 <div>
-  ${renderStats(fullData)}
+
 </div>
 </div>
 </div>
