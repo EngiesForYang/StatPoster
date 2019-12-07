@@ -143,7 +143,9 @@ async function loadData(term) {
   const invesDisplay = nFormatter(investment)
   const drawSteps = [
     ...startSteps,
-    ['fillText',[fullData.geo, 400, 450]],
+    ['textAlign','center'],
+    ['fillText',[fullData.geo, 2550 / 2, 450]],
+        ['textAlign','start'],
     ['font',"60px Montserrat"],
     ['fillText',[`Population ${stats['Population']} - Median Household Income - $${stats['Median Household Income']} - Poverty ${stats['Individuals below poverty level']}`,350,650]],  
     ['font',"130px Montserrat"],    
